@@ -32,12 +32,12 @@ An **on-demand skilled-services marketplace** for Bangladesh. Customers book nea
 
 ---
 
-### 2. **Growvia Analytics**
-**Repository**: [`growvia-analytics`](https://github.com/micro-decode/growvia-analytics)  
+### 2. **StatPriv**
+**Repositories**: [`statpriv`](https://github.com/micro-decode/statpriv) · [`statpriv-pro`](https://github.com/micro-decode/statpriv-pro) · [`statpriv-theme`](https://github.com/micro-decode/statpriv-theme) · [`statpriv-license-server`](https://github.com/micro-decode/statpriv-license-server)  
 **Status**: Active Development  
-**Language**: PHP (WordPress Plugin)
+**Language**: PHP (WordPress Plugin + Theme)
 
-A **high-performance WordPress analytics plugin** for tracking user behavior, conversions, and site performance. Designed with a **freemium model** for extensibility.
+A **self-hosted, privacy-first WordPress & WooCommerce analytics suite** for tracking user behavior, conversions, and shop performance — all data stays in the site's own database. Built on a **freemium model**: a free core plugin, a PRO plugin for advanced analytics and enterprise integrations, a marketing/landing theme, and a self-hosted license server (WCSL-compatible, driven by WooCommerce Subscriptions).
 
 **Features**:
 - User behavior tracking
@@ -53,22 +53,11 @@ A **high-performance WordPress analytics plugin** for tracking user behavior, co
 - WPCS coding standards
 - Query caching and optimized database indexes
 
-[👉 Explore Growvia Analytics →](https://github.com/micro-decode/growvia-analytics)
+[👉 Explore StatPriv →](https://github.com/micro-decode/statpriv)
 
 ---
 
-### 3. **Growvia Analytics Pro**
-**Repository**: [`growvia-analytics-pro`](https://github.com/micro-decode/growvia-analytics-pro)  
-**Status**: Active Development  
-**Language**: PHP (WordPress Plugin)
-
-The **PRO edition** of Growvia Analytics, extending the core plugin with advanced analytics, premium integrations, and enterprise features.
-
-[👉 Explore Growvia Analytics Pro →](https://github.com/micro-decode/growvia-analytics-pro)
-
----
-
-### 4. **Autonomous Execution (AutoFlow)**
+### 3. **Autonomous Execution (AutoFlow)**
 **Repository**: [`autonomous-execution`](https://github.com/micro-decode/autonomous-execution)  
 **Status**: Active Development  
 **Language**: TypeScript (Full-stack)
@@ -146,7 +135,7 @@ We welcome contributions! Each repository has its own contribution guidelines. S
 Each repository includes detailed documentation:
 
 - **SkillHub**: Local development setup, seed data, API docs
-- **Growvia Analytics**: PHP architecture, plugin structure, freemium design
+- **StatPriv**: PHP architecture, plugin/theme structure, freemium design, licensing server
 - **AutoFlow**: Setup guide, operations runbook, architecture decisions
 
 ---
@@ -165,7 +154,7 @@ We take security seriously:
 
 ## 📊 Organization Stats
 
-- **4 Active Repositories**
+- **6 Active Repositories**
 - **Multiple Production Services**
 - **Focus**: Real-world business solutions
 
@@ -191,6 +180,6 @@ Please refer to individual repositories for their specific licenses.
 
 **Built with ❤️ by the Micro-Decode Team**
 
-[GitHub Organization](https://github.com/micro-decode) · [SkillHub](https://github.com/micro-decode/skillhub-platform) · [Growvia](https://github.com/micro-decode/growvia-analytics) · [AutoFlow](https://github.com/micro-decode/autonomous-execution)
+[GitHub Organization](https://github.com/micro-decode) · [SkillHub](https://github.com/micro-decode/skillhub-platform) · [StatPriv](https://github.com/micro-decode/statpriv) · [AutoFlow](https://github.com/micro-decode/autonomous-execution)
 
 </div>
