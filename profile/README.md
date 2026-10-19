@@ -57,38 +57,86 @@ A **self-hosted, privacy-first WordPress & WooCommerce analytics suite** for tra
 
 ---
 
-### 3. **Autonomous Execution (AutoFlow)**
+### 3. **Fastautonomi** — Autonomous Execution
 **Repository**: [`autonomous-execution`](https://github.com/micro-decode/autonomous-execution)  
 **Status**: Active Development  
-**Language**: TypeScript (Full-stack)
+**Language**: TypeScript (Turborepo monorepo)
 
-An **intelligent task automation platform** that orchestrates coding agents to autonomously work on development tasks, open pull requests, and update project management tools.
+An **AI team for your organization**. Fastautonomi pulls tasks from your project-management tool, hands each one to a specialist AI agent running in a disposable Docker worker, opens a pull request per task, and updates the task status — with independent verification, approvals and a full audit trail.
 
 **How It Works**:
 ```
-PM Tool → Orchestrator → Worker (Docker + Coding Agent) → GitHub PR → PM Tool (status update)
+PM Tool → Orchestrator → Worker (Docker + Claude Agent SDK) → Verification → GitHub PR → PM Tool (status update)
 ```
 
 **Architecture**:
-- **Web Dashboard** — Next.js 15 + tRPC
-- **Orchestrator** — BullMQ workers for scheduling and execution
-- **Worker** — Docker container with AI coding agent
-- **Database** — PostgreSQL 16 + Prisma ORM
-- **Caching** — Redis 7 + BullMQ
+- **Web App** — Next.js 15 + tRPC, installable PWA, SSE realtime
+- **Orchestrator** — BullMQ scheduling, fair-share container capacity, crash resume
+- **Workers** — disposable Docker containers running the Claude Agent SDK (never get PM credentials, never push themselves)
+- **Tool Gateway** — MCP server over streamable HTTP; every connector call checked against a per-run grant
+- **Engine (v2)** — run state machine, Domain Packs, templates and verifiers
+- **Data** — PostgreSQL 16 + Prisma, Redis 7, AES-256-GCM encryption for secrets at rest
 
-**Supported Integrations**:
-- **Project Management**: Linear, Superthread, GitHub Issues
-- **AI Agent**: Anthropic Claude (API or subscription)
-- **Version Control**: GitHub (with runtime-created app)
+**Integrations**:
+- **Project Management**: Linear, Jira, Superthread, GitHub Issues, plus a native Fastautonomi board
+- **Version Control**: GitHub (runtime-created GitHub App, also used for "Continue with GitHub")
+- **AI**: Fastautonomi AI (Claude) — a platform service, nothing for users to connect
+- **Workspace & Content**: Google Workspace (Gmail, Calendar, Drive, Sheets, Docs), WordPress, web search
 
 **Key Features**:
-- Intelligent task assignment and scheduling
-- Isolated worker environments (Docker)
-- Automatic PR creation and management
-- Real-time dashboard with SSE updates
-- Security-hardened credential management (sealed-box encryption)
+- **Agent team** — a Lead that routes work to specialists (Software / Frontend / Backend / QA / DevOps Engineers, Planner, Reviewer, CTO, Product Manager, CMO, SEO, Content Writer & Editor, Operations…), each with its own skills and guardrails
+- **Independent AI review** and implementation briefs before code is written
+- **Task dependencies & branch rules** — stacked PRs, per-task-type base branches, never a push to the default branch
+- **Domain Packs** — Engineering, Content & Marketing, Ops & Admin workflow templates with built-in verifiers
+- **Scheduling & reminders** — alarm-style schedules, chained workflows, web-push and email notifications
+- **Memory** — remembers past tasks, reviews and PR outcomes and hands relevant context to agents
+- **3D virtual office** — see every teammate's live state, hold meetings, call coworkers (WebRTC)
+- **Usage metering & budgets** per agent and per organization; strict tenant isolation
 
-[👉 Explore Autonomous Execution →](https://github.com/micro-decode/autonomous-execution)
+[👉 Explore Fastautonomi →](https://github.com/micro-decode/autonomous-execution)
+
+---
+
+### 4. **Fastautonomi Marketing Site**
+**Repository**: [`fastautonomi-marketing`](https://github.com/micro-decode/fastautonomi-marketing)  
+**Status**: Active Development  
+**Language**: TypeScript (Next.js 15, React 19, Tailwind CSS)
+
+The **public website for Fastautonomi** at [fastautonomi.com](https://fastautonomi.com) — landing page, features, pricing (plans and credits), checkout hand-off, thank-you and "my account" pages, plus terms and privacy. The product itself lives at `app.fastautonomi.com`.
+
+**Highlights**:
+- All copy and prices kept in typed content modules, easy to change without touching layouts
+- Light / dark themes, responsive down to phone width, SEO metadata and sitemap
+- Build-time configuration for the site, app, account-service and contact URLs
+- Playwright journey checks (every internal link, pricing → checkout → account) and screenshot checks
+- Deployed as its own Docker container behind the app's Caddy (automatic HTTPS); CI checks then auto-deploys `main`
+
+[👉 Explore the marketing site →](https://github.com/micro-decode/fastautonomi-marketing)
+
+---
+
+### 5. **Shiksha Sutro** — Student Management
+**Repository**: [`student-management`](https://github.com/micro-decode/student-management)  
+**Status**: Active Development  
+**Language**: PHP (Laravel 13) + TypeScript (Vue 3)
+
+A **unified education data platform for Bangladesh**: one shared backend and one installable, offline-capable, Bangla-first PWA serving five portals — **Student, Guardian, Teacher, Institution and Government** — plus an admin console.
+
+**Architecture**:
+- **Backend** — Laravel 13 modular monolith (Identity, Registry, School Ops, Family, Reporting, Integration, Audit, Compliance), REST/JSON API with OpenAPI spec
+- **Frontend** — Vue 3 + TypeScript + Vite PWA (Workbox, encrypted IndexedDB offline outbox, Bangla/English)
+- **Data** — PostgreSQL, Redis (cache, queues, sessions, rate limits)
+- **Deployment** — full stack in Docker Compose (nginx, PHP-FPM, queue worker, scheduler)
+
+**Key Features**:
+- Offline attendance with duplicate-free sync, marks entry and report cards with QR verification
+- Admissions, transfers, promotions and bulk imports with approval workflows
+- Guardian view across multiple children and schools, consent management and record corrections
+- Upazila / district / national dashboards and analytics (enrolment, attendance, dropout, learning, equity, data quality)
+- OTP sign-in, role switching, tamper-evident audit chain, break-glass access, de-identified exports
+- Adapters for external government systems (synthetic fixtures only — all demo data is invented)
+
+[👉 Explore Shiksha Sutro →](https://github.com/micro-decode/student-management)
 
 ---
 
@@ -98,7 +146,8 @@ We specialize in:
 
 ✅ **Marketplace Platforms** — Real-time, scalable services on-demand  
 ✅ **WordPress Ecosystems** — High-performance analytics and integrations  
-✅ **AI-Driven Automation** — Autonomous coding agents and task orchestration  
+✅ **AI-Driven Automation** — Autonomous AI agent teams and task orchestration  
+✅ **EdTech & Public-Sector Data** — Offline-first, bilingual education platforms  
 ✅ **Full-Stack Solutions** — From backend APIs to mobile apps and dashboards  
 ✅ **Cloud-Native Architecture** — Docker, Redis, PostgreSQL, microservices  
 
@@ -108,14 +157,14 @@ We specialize in:
 
 | Area | Tech |
 |------|------|
-| **Frontend** | React, React Native, Next.js |
-| **Backend** | Node.js/Express, PHP, TypeScript |
+| **Frontend** | React, React Native, Next.js, Vue 3, Tailwind CSS, three.js |
+| **Backend** | Node.js/Express, TypeScript, PHP (Laravel, WordPress) |
 | **Database** | PostgreSQL, Redis |
-| **DevOps** | Docker, Docker Compose |
-| **Task Queue** | BullMQ |
-| **APIs** | REST, tRPC, Socket.io, GraphQL |
+| **DevOps** | Docker, Docker Compose, Caddy, GitHub Actions, Turborepo |
+| **Task Queue** | BullMQ, Laravel Queues |
+| **APIs** | REST, tRPC, Socket.io, GraphQL, MCP |
 | **Auth** | Auth.js, JWT, OAuth |
-| **AI/ML** | Anthropic Claude API |
+| **AI/ML** | Anthropic Claude API, Claude Agent SDK |
 
 ---
 
@@ -136,7 +185,9 @@ Each repository includes detailed documentation:
 
 - **SkillHub**: Local development setup, seed data, API docs
 - **StatPriv**: PHP architecture, plugin/theme structure, freemium design, licensing server
-- **AutoFlow**: Setup guide, operations runbook, architecture decisions
+- **Fastautonomi**: Setup guide, operations runbook, specs, architecture decisions
+- **Fastautonomi Marketing**: Content, pricing, deploy and browser-check guide
+- **Shiksha Sutro**: Docker setup, requirement traceability, runbook, OpenAPI spec, analytics plan
 
 ---
 
@@ -154,7 +205,7 @@ We take security seriously:
 
 ## 📊 Organization Stats
 
-- **6 Active Repositories**
+- **8 Active Repositories** across 5 products
 - **Multiple Production Services**
 - **Focus**: Real-world business solutions
 
@@ -180,6 +231,6 @@ Please refer to individual repositories for their specific licenses.
 
 **Built with ❤️ by the Micro-Decode Team**
 
-[GitHub Organization](https://github.com/micro-decode) · [SkillHub](https://github.com/micro-decode/skillhub-platform) · [StatPriv](https://github.com/micro-decode/statpriv) · [AutoFlow](https://github.com/micro-decode/autonomous-execution)
+[GitHub Organization](https://github.com/micro-decode) · [SkillHub](https://github.com/micro-decode/skillhub-platform) · [StatPriv](https://github.com/micro-decode/statpriv) · [Fastautonomi](https://github.com/micro-decode/autonomous-execution) · [fastautonomi.com](https://github.com/micro-decode/fastautonomi-marketing) · [Shiksha Sutro](https://github.com/micro-decode/student-management)
 
 </div>
