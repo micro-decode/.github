@@ -115,7 +115,28 @@ The **public website for Fastautonomi** at [fastautonomi.com](https://fastautono
 
 ---
 
-### 5. **Shiksha Sutro** — Student Management
+### 5. **Fastautonomi Staff Console**
+**Repository**: [`neeurn-admin`](https://github.com/micro-decode/neeurn-admin) (private)  
+**Status**: Active Development  
+**Language**: TypeScript (Next.js 15, React 19, Tailwind CSS)
+
+The **internal back office for the Fastautonomi team** — one place to see how the business is doing and to look after every customer,
+kept in step with the product and the website because it never keeps a copy of their data: every action goes through the product's own
+private API, which checks it, carries it out and records it.
+
+**Highlights**:
+- Business dashboard — recurring revenue, sign-ups, plans, AI cost and margin
+- Customers, organizations, subscriptions and billing history, with personal data masked until a staff member gives a reason to see it
+- Passkey-only staff sign-in, roles (Support / Finance / Owner) and a fresh passkey check before sensitive changes
+- A tamper-evident, append-only audit trail of every staff action
+- Reachable only through a zero-trust gate; signed, single-use, mutually authenticated requests to the product
+- Next: Stripe and PayPal payments, refunds and credit management with two-person approval
+
+[👉 Explore the staff console →](https://github.com/micro-decode/neeurn-admin)
+
+---
+
+### 6. **Shiksha Sutro** — Student Management
 **Repository**: [`student-management`](https://github.com/micro-decode/student-management)  
 **Status**: Active Development  
 **Language**: PHP (Laravel 13) + TypeScript (Vue 3)
@@ -150,6 +171,7 @@ We specialize in:
 ✅ **EdTech & Public-Sector Data** — Offline-first, bilingual education platforms  
 ✅ **Full-Stack Solutions** — From backend APIs to mobile apps and dashboards  
 ✅ **Cloud-Native Architecture** — Docker, Redis, PostgreSQL, microservices  
+✅ **Secure Back Offices** — Passkeys, zero-trust access, tamper-evident audit trails  
 
 ---
 
@@ -187,6 +209,7 @@ Each repository includes detailed documentation:
 - **StatPriv**: PHP architecture, plugin/theme structure, freemium design, licensing server
 - **Fastautonomi**: Setup guide, operations runbook, specs, architecture decisions
 - **Fastautonomi Marketing**: Content, pricing, deploy and browser-check guide
+- **Fastautonomi Staff Console**: Architecture, security controls and self-review, deploy guide
 - **Shiksha Sutro**: Docker setup, requirement traceability, runbook, OpenAPI spec, analytics plan
 
 ---
@@ -205,7 +228,7 @@ We take security seriously:
 
 ## 📊 Organization Stats
 
-- **8 Active Repositories** across 5 products
+- **9 Active Repositories** across 5 products
 - **Multiple Production Services**
 - **Focus**: Real-world business solutions
 
@@ -231,6 +254,6 @@ Please refer to individual repositories for their specific licenses.
 
 **Built with ❤️ by the Micro-Decode Team**
 
-[GitHub Organization](https://github.com/micro-decode) · [SkillHub](https://github.com/micro-decode/skillhub-platform) · [StatPriv](https://github.com/micro-decode/statpriv) · [Fastautonomi](https://github.com/micro-decode/autonomous-execution) · [fastautonomi.com](https://github.com/micro-decode/fastautonomi-marketing) · [Shiksha Sutro](https://github.com/micro-decode/student-management)
+[GitHub Organization](https://github.com/micro-decode) · [SkillHub](https://github.com/micro-decode/skillhub-platform) · [StatPriv](https://github.com/micro-decode/statpriv) · [Fastautonomi](https://github.com/micro-decode/autonomous-execution) · [fastautonomi.com](https://github.com/micro-decode/fastautonomi-marketing) · [Staff Console](https://github.com/micro-decode/neeurn-admin) · [Shiksha Sutro](https://github.com/micro-decode/student-management)
 
 </div>
