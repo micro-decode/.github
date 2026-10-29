@@ -8,7 +8,86 @@ Welcome to **micro-decode** — a software development organization focused on c
 
 ## 📌 Our Projects
 
-### 1. **SkillHub Platform** 
+### 1. **Neeurn** — Your AI Team
+**Repository**: [`autonomous-execution`](https://github.com/micro-decode/autonomous-execution)  
+**Status**: Active Development  
+**Language**: TypeScript (Turborepo monorepo)
+
+An **AI team for your organization**. Neeurn pulls tasks from your project-management tool, hands each one to a specialist AI agent running in a disposable Docker worker, opens a pull request per task, and updates the task status — with independent verification, approvals and a full audit trail.
+
+**How It Works**:
+```
+PM Tool → Orchestrator → Worker (Docker + Claude Agent SDK) → Verification → GitHub PR → PM Tool (status update)
+```
+
+**Architecture**:
+- **Web App** — Next.js 15 + tRPC, installable PWA, SSE realtime
+- **Orchestrator** — BullMQ scheduling, fair-share container capacity, crash resume
+- **Workers** — disposable Docker containers running the Claude Agent SDK (never get PM credentials, never push themselves)
+- **Tool Gateway** — MCP server over streamable HTTP; every connector call checked against a per-run grant
+- **Engine (v2)** — run state machine, Domain Packs, templates and verifiers
+- **Data** — PostgreSQL 16 + Prisma, Redis 7, AES-256-GCM encryption for secrets at rest
+
+**Integrations**:
+- **Project Management**: Linear, Jira, Superthread, GitHub Issues, plus a native Neeurn board
+- **Version Control**: GitHub (runtime-created GitHub App, also used for "Continue with GitHub")
+- **AI**: Neeurn AI (Claude) — a platform service, nothing for users to connect
+- **Workspace & Content**: Google Workspace (Gmail, Calendar, Drive, Sheets, Docs), WordPress, web search
+
+**Key Features**:
+- **Agent team** — a Lead that routes work to specialists (Software / Frontend / Backend / QA / DevOps Engineers, Planner, Reviewer, CTO, Product Manager, CMO, SEO, Content Writer & Editor, Operations…), each with its own skills and guardrails
+- **Independent AI review** and implementation briefs before code is written
+- **Task dependencies & branch rules** — stacked PRs, per-task-type base branches, never a push to the default branch
+- **Domain Packs** — Engineering, Content & Marketing, Ops & Admin workflow templates with built-in verifiers
+- **Scheduling & reminders** — alarm-style schedules, chained workflows, web-push and email notifications
+- **Memory** — remembers past tasks, reviews and PR outcomes and hands relevant context to agents
+- **3D virtual office** — see every teammate's live state, hold meetings, call coworkers (WebRTC)
+- **Usage metering & budgets** per agent and per organization; strict tenant isolation
+
+[👉 Explore Neeurn →](https://github.com/micro-decode/autonomous-execution)
+
+---
+
+### 2. **Neeurn Marketing Site**
+**Repository**: [`fastautonomi-marketing`](https://github.com/micro-decode/fastautonomi-marketing)  
+**Status**: Active Development  
+**Language**: TypeScript (Next.js 15, React 19, Tailwind CSS)
+
+The **public website for Neeurn** at [fastautonomi.com](https://fastautonomi.com) — landing page, features, pricing (plans and credits), checkout hand-off, thank-you and "my account" pages, plus terms and privacy. The product itself lives at `app.fastautonomi.com`.
+
+**Highlights**:
+- All copy and prices kept in typed content modules, easy to change without touching layouts
+- Light / dark themes, responsive down to phone width, SEO metadata and sitemap
+- Build-time configuration for the site, app, account-service and contact URLs
+- Playwright journey checks (every internal link, pricing → checkout → account) and screenshot checks
+- Deployed as its own Docker container behind the app's Caddy (automatic HTTPS); CI checks then auto-deploys `main`
+
+[👉 Explore the marketing site →](https://github.com/micro-decode/fastautonomi-marketing)
+
+---
+
+### 3. **Neeurn Staff Console**
+**Repository**: [`neeurn-admin`](https://github.com/micro-decode/neeurn-admin) (private)  
+**Status**: Active Development  
+**Language**: TypeScript (Next.js 15, React 19, Tailwind CSS)
+
+The **internal back office for the Neeurn team** — one place to see how the business is doing and to look after every customer,
+kept in step with the product and the website because it never keeps a copy of their data: every action goes through the product's own
+private API, which checks it, carries it out and records it.
+
+**Highlights**:
+- Business dashboard — recurring revenue, sign-ups, plans, AI cost and margin
+- Customers, organizations, subscriptions and billing history, with personal data masked until a staff member gives a reason to see it
+- Passkey-only staff sign-in, roles (Support / Finance / Owner) and a fresh passkey check before sensitive changes
+- A tamper-evident, append-only audit trail of every staff action
+- Reachable only through a zero-trust gate; signed, single-use, mutually authenticated requests to the product
+- Next: Stripe and PayPal payments, refunds and credit management with two-person approval
+
+[👉 Explore the staff console →](https://github.com/micro-decode/neeurn-admin)
+
+---
+
+### 4. **SkillHub Platform** 
 **Repository**: [`skillhub-platform`](https://github.com/micro-decode/skillhub-platform)  
 **Status**: Active Development  
 **Language**: JavaScript (React Native, Node.js)
@@ -32,7 +111,7 @@ An **on-demand skilled-services marketplace** for Bangladesh. Customers book nea
 
 ---
 
-### 2. **StatPriv**
+### 5. **StatPriv**
 **Repositories**: [`statpriv`](https://github.com/micro-decode/statpriv) · [`statpriv-pro`](https://github.com/micro-decode/statpriv-pro) · [`statpriv-theme`](https://github.com/micro-decode/statpriv-theme) · [`statpriv-license-server`](https://github.com/micro-decode/statpriv-license-server)  
 **Status**: Active Development  
 **Language**: PHP (WordPress Plugin + Theme)
@@ -54,85 +133,6 @@ A **self-hosted, privacy-first WordPress & WooCommerce analytics suite** for tra
 - Query caching and optimized database indexes
 
 [👉 Explore StatPriv →](https://github.com/micro-decode/statpriv)
-
----
-
-### 3. **Fastautonomi** — Autonomous Execution
-**Repository**: [`autonomous-execution`](https://github.com/micro-decode/autonomous-execution)  
-**Status**: Active Development  
-**Language**: TypeScript (Turborepo monorepo)
-
-An **AI team for your organization**. Fastautonomi pulls tasks from your project-management tool, hands each one to a specialist AI agent running in a disposable Docker worker, opens a pull request per task, and updates the task status — with independent verification, approvals and a full audit trail.
-
-**How It Works**:
-```
-PM Tool → Orchestrator → Worker (Docker + Claude Agent SDK) → Verification → GitHub PR → PM Tool (status update)
-```
-
-**Architecture**:
-- **Web App** — Next.js 15 + tRPC, installable PWA, SSE realtime
-- **Orchestrator** — BullMQ scheduling, fair-share container capacity, crash resume
-- **Workers** — disposable Docker containers running the Claude Agent SDK (never get PM credentials, never push themselves)
-- **Tool Gateway** — MCP server over streamable HTTP; every connector call checked against a per-run grant
-- **Engine (v2)** — run state machine, Domain Packs, templates and verifiers
-- **Data** — PostgreSQL 16 + Prisma, Redis 7, AES-256-GCM encryption for secrets at rest
-
-**Integrations**:
-- **Project Management**: Linear, Jira, Superthread, GitHub Issues, plus a native Fastautonomi board
-- **Version Control**: GitHub (runtime-created GitHub App, also used for "Continue with GitHub")
-- **AI**: Fastautonomi AI (Claude) — a platform service, nothing for users to connect
-- **Workspace & Content**: Google Workspace (Gmail, Calendar, Drive, Sheets, Docs), WordPress, web search
-
-**Key Features**:
-- **Agent team** — a Lead that routes work to specialists (Software / Frontend / Backend / QA / DevOps Engineers, Planner, Reviewer, CTO, Product Manager, CMO, SEO, Content Writer & Editor, Operations…), each with its own skills and guardrails
-- **Independent AI review** and implementation briefs before code is written
-- **Task dependencies & branch rules** — stacked PRs, per-task-type base branches, never a push to the default branch
-- **Domain Packs** — Engineering, Content & Marketing, Ops & Admin workflow templates with built-in verifiers
-- **Scheduling & reminders** — alarm-style schedules, chained workflows, web-push and email notifications
-- **Memory** — remembers past tasks, reviews and PR outcomes and hands relevant context to agents
-- **3D virtual office** — see every teammate's live state, hold meetings, call coworkers (WebRTC)
-- **Usage metering & budgets** per agent and per organization; strict tenant isolation
-
-[👉 Explore Fastautonomi →](https://github.com/micro-decode/autonomous-execution)
-
----
-
-### 4. **Fastautonomi Marketing Site**
-**Repository**: [`fastautonomi-marketing`](https://github.com/micro-decode/fastautonomi-marketing)  
-**Status**: Active Development  
-**Language**: TypeScript (Next.js 15, React 19, Tailwind CSS)
-
-The **public website for Fastautonomi** at [fastautonomi.com](https://fastautonomi.com) — landing page, features, pricing (plans and credits), checkout hand-off, thank-you and "my account" pages, plus terms and privacy. The product itself lives at `app.fastautonomi.com`.
-
-**Highlights**:
-- All copy and prices kept in typed content modules, easy to change without touching layouts
-- Light / dark themes, responsive down to phone width, SEO metadata and sitemap
-- Build-time configuration for the site, app, account-service and contact URLs
-- Playwright journey checks (every internal link, pricing → checkout → account) and screenshot checks
-- Deployed as its own Docker container behind the app's Caddy (automatic HTTPS); CI checks then auto-deploys `main`
-
-[👉 Explore the marketing site →](https://github.com/micro-decode/fastautonomi-marketing)
-
----
-
-### 5. **Fastautonomi Staff Console**
-**Repository**: [`neeurn-admin`](https://github.com/micro-decode/neeurn-admin) (private)  
-**Status**: Active Development  
-**Language**: TypeScript (Next.js 15, React 19, Tailwind CSS)
-
-The **internal back office for the Fastautonomi team** — one place to see how the business is doing and to look after every customer,
-kept in step with the product and the website because it never keeps a copy of their data: every action goes through the product's own
-private API, which checks it, carries it out and records it.
-
-**Highlights**:
-- Business dashboard — recurring revenue, sign-ups, plans, AI cost and margin
-- Customers, organizations, subscriptions and billing history, with personal data masked until a staff member gives a reason to see it
-- Passkey-only staff sign-in, roles (Support / Finance / Owner) and a fresh passkey check before sensitive changes
-- A tamper-evident, append-only audit trail of every staff action
-- Reachable only through a zero-trust gate; signed, single-use, mutually authenticated requests to the product
-- Next: Stripe and PayPal payments, refunds and credit management with two-person approval
-
-[👉 Explore the staff console →](https://github.com/micro-decode/neeurn-admin)
 
 ---
 
@@ -207,9 +207,9 @@ Each repository includes detailed documentation:
 
 - **SkillHub**: Local development setup, seed data, API docs
 - **StatPriv**: PHP architecture, plugin/theme structure, freemium design, licensing server
-- **Fastautonomi**: Setup guide, operations runbook, specs, architecture decisions
-- **Fastautonomi Marketing**: Content, pricing, deploy and browser-check guide
-- **Fastautonomi Staff Console**: Architecture, security controls and self-review, deploy guide
+- **Neeurn**: Setup guide, operations runbook, specs, architecture decisions
+- **Neeurn Marketing**: Content, pricing, deploy and browser-check guide
+- **Neeurn Staff Console**: Architecture, security controls and self-review, deploy guide
 - **Shiksha Sutro**: Docker setup, requirement traceability, runbook, OpenAPI spec, analytics plan
 
 ---
@@ -254,6 +254,6 @@ Please refer to individual repositories for their specific licenses.
 
 **Built with ❤️ by the Micro-Decode Team**
 
-[GitHub Organization](https://github.com/micro-decode) · [SkillHub](https://github.com/micro-decode/skillhub-platform) · [StatPriv](https://github.com/micro-decode/statpriv) · [Fastautonomi](https://github.com/micro-decode/autonomous-execution) · [fastautonomi.com](https://github.com/micro-decode/fastautonomi-marketing) · [Staff Console](https://github.com/micro-decode/neeurn-admin) · [Shiksha Sutro](https://github.com/micro-decode/student-management)
+[GitHub Organization](https://github.com/micro-decode) · [SkillHub](https://github.com/micro-decode/skillhub-platform) · [StatPriv](https://github.com/micro-decode/statpriv) · [Neeurn](https://github.com/micro-decode/autonomous-execution) · [neeurn.com](https://github.com/micro-decode/fastautonomi-marketing) · [Staff Console](https://github.com/micro-decode/neeurn-admin) · [Shiksha Sutro](https://github.com/micro-decode/student-management)
 
 </div>
