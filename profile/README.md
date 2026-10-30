@@ -9,7 +9,7 @@ Welcome to **micro-decode** — a software development organization focused on c
 ## 📌 Our Projects
 
 ### 1. **Neeurn** — Your AI Team
-**Repository**: [`autonomous-execution`](https://github.com/micro-decode/autonomous-execution)  
+**Repository**: [`Neeurn App`](https://github.com/micro-decode/autonomous-execution)  
 **Status**: Active Development  
 **Language**: TypeScript (Turborepo monorepo)
 
@@ -49,11 +49,11 @@ PM Tool → Orchestrator → Worker (Docker + Claude Agent SDK) → Verification
 ---
 
 ### 2. **Neeurn Marketing Site**
-**Repository**: [`fastautonomi-marketing`](https://github.com/micro-decode/fastautonomi-marketing)  
+**Repository**: [`Neeurn-marketing`](https://github.com/micro-decode/fastautonomi-marketing)  
 **Status**: Active Development  
 **Language**: TypeScript (Next.js 15, React 19, Tailwind CSS)
 
-The **public website for Neeurn** at [fastautonomi.com](https://fastautonomi.com) — landing page, features, pricing (plans and credits), checkout hand-off, thank-you and "my account" pages, plus terms and privacy. The product itself lives at `app.fastautonomi.com`.
+The **public website for Neeurn** at [fastautonomi.com](https://neeurn.com) — landing page, features, pricing (plans and credits), checkout hand-off, thank-you and "my account" pages, plus terms and privacy. The product itself lives at `app.fastautonomi.com`.
 
 **Highlights**:
 - All copy and prices kept in typed content modules, easy to change without touching layouts
